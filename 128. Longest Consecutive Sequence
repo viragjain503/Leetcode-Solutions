@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        map<int,int> mymap;
+        for(auto item: nums){
+            mymap[item] = 1;
+        }
+        int length = 1;
+        int max_length = 0;
+        for(auto i : mymap){
+            if(mymap.find(i.first+1) != mymap.end() && mymap[i.first + 1] == 1){
+                length += 1; 
+                continue;
+            }
+            max_length = max(length,max_length);
+            length = 1;
+        }
+        return max_length;
+    }
+};
